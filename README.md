@@ -1,4 +1,4 @@
-# elysiajs remix
+# ElysiaJS Remix
 
 Remix integration for ElysiaJS.
 
@@ -26,6 +26,7 @@ const app = new Elysia().use(remix()).listen(5173);
 // vite.config.js
 import { defineConfig } from "vite";
 import { vitePlugin as remix } from "@remix-run/dev";
+
 export default defineConfig({
     plugins: [remix()],
 });
