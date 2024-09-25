@@ -46,13 +46,6 @@ export const remix = async (_config: RemixConfig) => {
         return null;
     })();
 
-    const build: any = await (async () => {
-        if (vite) {
-            return vite.ssrLoadModule("virtual:remix/server-build");
-        }
-        return import(serverEntryPoint);
-    })();
-
     if (vite) {
         plugin.onRequest(async ({ request }) => {
             return connectToWeb((req, res, next) => {
@@ -70,6 +63,12 @@ export const remix = async (_config: RemixConfig) => {
 
     plugin.all("*", async (c) => {
         const context = (await config.getLoadContext?.(c)) ?? {};
+        const build: any = await (async () => {
+            if (vite) {
+                return vite.ssrLoadModule("virtual:remix/server-build");
+            }
+            return import(serverEntryPoint);
+        })();
         return createRequestHandler(build, config.mode)(c.request, context);
     });
 
