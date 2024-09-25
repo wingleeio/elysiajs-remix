@@ -7,7 +7,7 @@ export default defineConfig({
     format: ["cjs", "esm"],
     outDir: "dist",
     splitting: false,
-    external: ["@remix-run/server-runtime", "elysia", "vite"],
+    external: ["@remix-run/server-runtime", "elysia", "vite", "@remix-run/node"],
     esbuildOptions: (options, context) => {
         if (context.format === "esm") {
             options.outExtension = { ".js": ".mjs" };

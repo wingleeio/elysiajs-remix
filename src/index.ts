@@ -3,12 +3,17 @@ import { Elysia } from "elysia";
 import { createServer, InlineConfig } from "vite";
 import { join } from "node:path";
 import { connectToWeb } from "./connectToWeb";
+import { Context } from "elysia/context";
+import { AppLoadContext } from "@remix-run/node";
 
-type RemixConfig = {
+export type GetLoadContext = (context: Context) => AppLoadContext | Promise<AppLoadContext>;
+
+export type RemixConfig = {
     mode?: string;
     buildDirectory?: string;
     serverEntryPointFileName?: string;
     vite?: InlineConfig;
+    getLoadContext?: GetLoadContext;
 };
 
 export const remix = async (_config: RemixConfig) => {
@@ -64,7 +69,8 @@ export const remix = async (_config: RemixConfig) => {
     }
 
     plugin.all("*", async (c) => {
-        return createRequestHandler(build, config.mode)(c.request, c);
+        const context = (await config.getLoadContext?.(c)) ?? {};
+        return createRequestHandler(build, config.mode)(c.request, context);
     });
 
     return plugin;
