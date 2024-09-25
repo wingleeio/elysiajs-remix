@@ -1,0 +1,25 @@
+{
+    "name": "elysiajs-remix",
+    "version": "0.0.1",
+    "description": "",
+    "main": "./dist/index.mjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "repository": "https://github.com/wingleeio/elysiajs-remix",
+    "scripts": {
+        "build": "tsup --format cjs,esm --dts"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@changesets/cli": "^2.27.8",
+        "@remix-run/server-runtime": "^2.12.1",
+        "@types/bun": "^1.1.10",
+        "@types/node": "^22.6.1",
+        "elysia": "^1.1.16",
+        "tsup": "^8.3.0",
+        "typescript": "^5.6.2",
+        "vite": "^5.4.7"
+    }
+}

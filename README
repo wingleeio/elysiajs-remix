@@ -1,0 +1,5 @@
+## Acknowledgments
+
+This project uses code from the following sources:
+
+-   [Vike Node](https://github.com/vikejs/vike-node/tree/main) - `connectToWeb` utility for converting connect middleware to wintercg compaitable response/request objects.
