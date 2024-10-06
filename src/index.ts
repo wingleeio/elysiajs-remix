@@ -1,10 +1,11 @@
-import { createRequestHandler } from "@remix-run/server-runtime";
 import { Elysia, InferContext } from "elysia";
-import { createServer, InlineConfig } from "vite";
-import { join } from "node:path";
-import { connectToWeb } from "./connectToWeb";
-import { Context } from "elysia/context";
+import { InlineConfig, createServer } from "vite";
+
 import { AppLoadContext } from "@remix-run/node";
+import { Context } from "elysia/context";
+import { connectToWeb } from "connect-to-web";
+import { createRequestHandler } from "@remix-run/server-runtime";
+import { join } from "node:path";
 
 export type GetLoadContext = (context: Context) => AppLoadContext | Promise<AppLoadContext>;
 
